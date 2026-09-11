@@ -5,27 +5,16 @@ import path from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  // Vercel serves the app from the domain root.
-  // GitHub Pages uses the repository subpath.
   base: process.env.GITHUB_ACTIONS ? "/retinal_main/" : "/",
 
-  plugins: [
-    react(),
-    vlyPlugin(),
-    tailwindcss(),
-  ],
+  plugins: [react(), vlyPlugin(), tailwindcss()],
 
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
 
-    dedupe: [
-      "react",
-      "react/jsx-runtime",
-      "react-dom",
-      "react-dom/client",
-    ],
+    dedupe: ["react", "react/jsx-runtime", "react-dom", "react-dom/client"],
   },
 
   build: {
@@ -34,15 +23,9 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          "react-vendor": [
-            "react",
-            "react-dom",
-            "react-router",
-          ],
+          "react-vendor": ["react", "react-dom", "react-router"],
 
-          "convex-vendor": [
-            "convex",
-          ],
+          "convex-vendor": ["convex"],
 
           "radix-ui": [
             "@radix-ui/react-accordion",
@@ -71,19 +54,11 @@ export default defineConfig({
             "@radix-ui/react-tooltip",
           ],
 
-          "framer-motion": [
-            "framer-motion",
-          ],
+          "framer-motion": ["framer-motion"],
 
-          charts: [
-            "recharts",
-          ],
+          charts: ["recharts"],
 
-          forms: [
-            "react-hook-form",
-            "@hookform/resolvers",
-            "zod",
-          ],
+          forms: ["react-hook-form", "@hookform/resolvers", "zod"],
         },
 
         chunkFileNames: "assets/[name]-[hash].js",
