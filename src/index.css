@@ -1,0 +1,392 @@
+/* DO NOT CHANGE */
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+/* DO NOT CHANGE */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ==================================================================
+   RETINASCAN VISUAL IDENTITY
+   ------------------------------------------------------------------
+   Direction: "clinical instrument", not "AI SaaS dashboard".
+   - One coherent surface language everywhere (marketing pages included):
+     thin hairline borders, restrained radius, no glass/blur, no
+     decorative rainbow gradients, no floating/drifting background art.
+   - Color carries meaning only: neutral = structure, blue = system/AI,
+     emerald = safe/verified, amber = caution/review, red = referable/
+     urgent. Every other surface stays achromatic.
+   - A single recurring brand motif — a concentric "fundus ring" — stands
+     in for the generic gradient blob, used sparingly (empty states,
+     loaders, the ambient corner mark) so it reads as intentional rather
+     than decorative filler.
+   - Motion is reserved for state change: stage completion, streaming
+     text, revealing evidence — never idle/ambient looping for its own
+     sake.
+   ================================================================== */
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.984 0.003 240);
+  --foreground: oklch(0.28 0.035 262);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.28 0.035 262);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.28 0.035 262);
+  --primary: oklch(0.52 0.11 252);
+  --primary-foreground: oklch(0.985 0.005 250);
+  --secondary: oklch(0.94 0.025 185);
+  --secondary-foreground: oklch(0.35 0.05 220);
+  --muted: oklch(0.962 0.005 245);
+  --muted-foreground: oklch(0.52 0.02 255);
+  --accent: oklch(0.93 0.035 170);
+  --accent-foreground: oklch(0.32 0.05 210);
+  --destructive: oklch(0.58 0.2 27);
+  --border: oklch(0.918 0.006 250);
+  --input: oklch(0.918 0.006 250);
+  --ring: oklch(0.62 0.1 250);
+  --chart-1: oklch(0.52 0.11 252);
+  --chart-2: oklch(0.62 0.11 158);
+  --chart-3: oklch(0.68 0.1 205);
+  --chart-4: oklch(0.7 0.12 75);
+  --chart-5: oklch(0.6 0.18 25);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.28 0.035 262);
+  --sidebar-primary: oklch(0.52 0.11 252);
+  --sidebar-primary-foreground: oklch(0.985 0.005 250);
+  --sidebar-accent: oklch(0.945 0.02 250);
+  --sidebar-accent-foreground: oklch(0.4 0.07 252);
+  --sidebar-border: oklch(0.918 0.006 250);
+  --sidebar-ring: oklch(0.62 0.1 250);
+}
+
+/* Persisted clinical display themes.  These variables keep semantic status
+   colors intact while changing surfaces and contrast, rather than inverting
+   the interface. */
+.dark {
+  --background: oklch(0.18 0.018 252);
+  --foreground: oklch(0.94 0.008 245);
+  --card: oklch(0.225 0.02 252);
+  --card-foreground: oklch(0.94 0.008 245);
+  --popover: oklch(0.24 0.022 252);
+  --popover-foreground: oklch(0.94 0.008 245);
+  --muted: oklch(0.27 0.018 252);
+  --muted-foreground: oklch(0.72 0.018 250);
+  --border: oklch(0.34 0.018 252);
+  --input: oklch(0.34 0.018 252);
+  --sidebar: oklch(0.205 0.02 252);
+  --sidebar-foreground: oklch(0.94 0.008 245);
+  --sidebar-accent: oklch(0.29 0.04 252);
+  --sidebar-accent-foreground: oklch(0.9 0.03 245);
+}
+.high-contrast { --background: #fff; --foreground: #101820; --card: #fff; --card-foreground: #101820; --muted: #edf2f7; --muted-foreground: #334155; --border: #64748b; --input: #64748b; --primary: #003f91; --sidebar: #fff; --sidebar-foreground: #101820; --sidebar-accent: #dbeafe; --sidebar-accent-foreground: #003f91; }
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family:
+      "Inter",
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  /* Headings carry the brand's typographic identity: tight tracking,
+     used consistently as the main lever for distinctiveness instead of
+     importing a second display typeface. */
+  h1, h2, h3 {
+    letter-spacing: -0.02em;
+  }
+  button:not([disabled]),
+  [role="button"]:not([disabled]) {
+    cursor: pointer;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Structural utilities — hairline borders, restrained elevation        */
+/* ------------------------------------------------------------------ */
+@layer utilities {
+  .nb-border {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .nb-border-t-2 {
+    border-top-width: 1px;
+  }
+  /* Elevation is a single soft shadow, not a stacked glow. */
+  .nb-pop {
+    box-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.05), 0 6px 20px -6px rgb(15 23 42 / 0.08);
+  }
+  .nb-pop-hover {
+    transition:
+      box-shadow 180ms ease,
+      transform 180ms ease,
+      background-color 150ms ease,
+      border-color 150ms ease;
+  }
+  .nb-pop-hover:hover {
+    box-shadow: 0 2px 4px 0 rgb(15 23 42 / 0.06), 0 10px 28px -8px rgb(15 23 42 / 0.1);
+    transform: translateY(-1px);
+  }
+  .nb-pop-hover:active {
+    box-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.05);
+    transform: translateY(0);
+  }
+  .nb-mono {
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+      monospace;
+    font-feature-settings: "tnum";
+  }
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  /* Instrument surface — a crisp, low-blur elevated card used only where
+     content needs to visually separate from the ambient corner mark
+     (e.g. the landing-page hero preview). Replaces heavy glassmorphism:
+     the blur is just enough to soften what's behind it, never a frosted
+     "iOS control center" look. */
+  .glass {
+    background: color-mix(in oklab, var(--card) 96%, transparent);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid var(--border);
+  }
+
+  /* Primary CTA — near-solid brand color with a whisper of depth, not a
+     diagonal blue→teal rainbow. */
+  .btn-grad {
+    background-image: linear-gradient(
+      165deg,
+      oklch(0.55 0.115 252),
+      oklch(0.47 0.11 254)
+    );
+  }
+
+  /* Tinted washes for stat/summary cards — a single hue fading to card,
+     used to color-code a metric's category, not for decoration. */
+  .tint-blue {
+    background-image: linear-gradient(160deg, oklch(0.95 0.025 250), var(--card) 60%);
+  }
+  .tint-teal {
+    background-image: linear-gradient(160deg, oklch(0.95 0.03 185), var(--card) 60%);
+  }
+  .tint-emerald {
+    background-image: linear-gradient(160deg, oklch(0.95 0.035 160), var(--card) 60%);
+  }
+  .tint-amber {
+    background-image: linear-gradient(160deg, oklch(0.96 0.035 90), var(--card) 60%);
+  }
+  .tint-rose {
+    background-image: linear-gradient(160deg, oklch(0.95 0.03 15), var(--card) 60%);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion — reserved for state change, never idle/ambient looping       */
+/* ------------------------------------------------------------------ */
+@keyframes rs-verify-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes rs-ping-soft {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  80%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+@keyframes rs-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes rs-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rs-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes rs-strike {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes rs-fade-slow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .anim-verify {
+    animation: rs-verify-pop 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.4) both;
+  }
+  .anim-ping-soft {
+    animation: rs-ping-soft 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  .anim-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .anim-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      rgb(255 255 255 / 0.5),
+      transparent
+    );
+    animation: rs-shimmer 1.8s infinite;
+  }
+  /* Single deterministic sweep — a precision instrument reading, not a
+     twin counter-rotating sci-fi loader. */
+  .anim-orbit {
+    animation: rs-spin 1s linear infinite;
+  }
+  .anim-rise {
+    animation: rs-rise 0.4s ease-out both;
+  }
+  .anim-strike {
+    stroke-dasharray: 24;
+    animation: rs-strike 0.4s ease-out 0.15s both;
+  }
+  .anim-fade-slow {
+    animation: rs-fade-slow 0.7s ease-out both;
+  }
+
+  /* ---------------------------------------------------------------
+     Brand motif — concentric "fundus ring" corner mark.
+     A fixed, static, very low-opacity set of rings anchored to the
+     top-right of the viewport. References the optic disc / retinal
+     imaging without illustrating an eye, stays out of the way of
+     content, and never moves — the opposite of a drifting gradient
+     blob. Used once per screen via .bg-waves so existing markup in
+     AppShell/Landing keeps working unchanged.
+     --------------------------------------------------------------- */
+  .bg-waves {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .bg-waves::before {
+    content: "";
+    position: absolute;
+    top: -18vw;
+    right: -18vw;
+    width: 46vw;
+    height: 46vw;
+    min-width: 420px;
+    min-height: 420px;
+    border-radius: 9999px;
+    border: 1px solid oklch(0.55 0.1 252 / 0.08);
+    box-shadow:
+      0 0 0 64px oklch(0.55 0.1 252 / 0.025) inset,
+      0 0 0 140px oklch(0.6 0.09 185 / 0.02) inset;
+  }
+  .bg-waves::after {
+    content: "";
+    position: absolute;
+    bottom: -22vw;
+    left: -22vw;
+    width: 40vw;
+    height: 40vw;
+    min-width: 360px;
+    min-height: 360px;
+    border-radius: 9999px;
+    border: 1px solid oklch(0.55 0.1 252 / 0.05);
+  }
+
+  /* Static precision grid — used sparingly on the landing page only. */
+  .bg-grid-soft {
+    background-image:
+      linear-gradient(to right, oklch(0.5 0.03 250 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.5 0.03 250 / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+}
